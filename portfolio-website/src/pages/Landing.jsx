@@ -10,7 +10,6 @@ import {
   FaReact,
   FaCss3Alt,
   FaJs,
-  FaBootstrap,
   FaNodeJs,
   FaFigma,
   FaGitAlt,
@@ -28,11 +27,6 @@ import {
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
-  const [portfolioScroll, setPortfolioScroll] = useState(0);
-  const portfolioRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
 
   useEffect(() => {
     // Loading animation
@@ -62,39 +56,20 @@ const Landing = () => {
     return () => observer.disconnect();
   }, [loading]);
 
-  // Portfolio carousel drag handlers
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - portfolioRef.current.offsetLeft);
-    setScrollLeft(portfolioRef.current.scrollLeft);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - portfolioRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    portfolioRef.current.scrollLeft = scrollLeft - walk;
-  };
-
   const portfolioProjects = [
     {
       title: "Ordering With Inventory Monitoring System",
       tags: ["React", "CSS", "Express.js", "MySQL", "Sequelize"],
       description: "Web-based application for ordering and inventory monitoring for GAMJ General Merchandise",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
-      link: "https://github.com/iskodemain/gamj-general-merchandise"
+      image: assets.project_1,
+      link: "https://www.gamjgeneralmerchandise.store/"
     },
     {
       title: "Ordering System for Clothes Store",
       tags: ["React", "Express.js", "Tailwind CSS", "MySQL", "Sequelize"],
       description: "Web-based ordering system for a clothing store, featuring product management and order processing,",
-      image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=500&fit=crop",
-      link: "https://github.com/iskodemain/Angle-Online-Store"
+      image: assets.project_2,
+      link: "https://angle-online-store-customer.vercel.app/"
     },
     {
       title: "Library Management System",
@@ -104,11 +79,11 @@ const Landing = () => {
       link: "https://github.com/Valiantic/Library-Management-System-"
     },
     {
-      title: "Portfolio Website",
+      title: "Charina Lingan Portfolio Website",
       tags: ["React", "CSS"],
       description: "Personal portfolio website showcasing projects, skills, and contact information.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop",
-      link: "https://github.com/iskodemain/francis-lingan-portfolio"
+      image: assets.project_4,
+      link: "https://charina-lingan-portfolio.vercel.app"
     }
   ];
 
@@ -137,19 +112,19 @@ const Landing = () => {
         <div className="home-content">
           <div className="home-text">
             <h1 className="home-title">Francis Lingan</h1>
-            <p className="home-subtitle">Full Stack Developer and UI/UX Designer</p>
+            <p className="home-subtitle">Software Developer, UI/UX Designer, and QA Tester</p>
             <a 
-              href={assets.resume} 
+              href={assets.resume_need_to_update} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="resume-btn"
             >
-              Check out my Resume
+              Check out my Resume <i>(Temporarily Unavailable)</i>
             </a>
           </div>
           <div className="home-image">
             <div className="profile-circle">
-              <img src={assets.profile} alt="Francis Lingan" />
+              <img src={assets.profile_1} alt="Francis Lingan" />
             </div>
           </div>
         </div>
@@ -161,53 +136,41 @@ const Landing = () => {
           <h2 className="section-title">About Me</h2>
           <div className="about-content">
             <p className="about-text">
-              I'm Francis Carl A. Lingan, a full-stack web developer and UI/UX designer 
-              currently seeking an internship opportunity. I am a fourth-year college student 
-              from Cavite State University - Carmona Campus.
+              I'm Francis Carl A. Lingan, a Software Developer specializing in web development, UI/UX design, and QA testing, currently seeking work opportunities. I am a graduate of Bachelor of Science in Information Technology from Cavite State University - Carmona Campus.
             </p>
             <p className="about-text">
-              With a passion for creating seamless digital experiences, I combine technical 
-              expertise with creative design to build modern, responsive web applications 
-              that solve real-world problems.
+              I combine technical skills with creative design to build systems and responsive web applications.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="portfolio" className="portfolio-section section-animate">
+      {/* Projects Section */}
+      <section id="projects" className="projects-section section-animate">
         <div className="container">
-          <h2 className="section-title">Portfolio</h2>
-          <div 
-            className="portfolio-carousel" 
-            ref={portfolioRef}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onMouseMove={handleMouseMove}
-          >
+          <h2 className="section-title">Projects</h2>
+          <div className="projects-grid">
             {portfolioProjects.map((project, index) => (
-              <div key={index} className="portfolio-card">
-                <div className="portfolio-image" style={{backgroundImage: `url(${project.image})`}}>
-                  <div className="portfolio-overlay">
-                    <div className="portfolio-tags">
+              <div key={index} className="projects-card">
+                <div className="projects-image" style={{backgroundImage: `url(${project.image})`}}>
+                  <div className="projects-overlay">
+                    <div className="projects-tags">
                       {project.tags.map((tag, i) => (
-                        <span key={i} className="portfolio-tag">{tag}</span>
+                        <span key={i} className="projects-tag">{tag}</span>
                       ))}
                     </div>
                   </div>
                 </div>
-                <div className="portfolio-info">
-                  <h3 className="portfolio-title">{project.title}</h3>
-                  <p className="portfolio-description">{project.description}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="portfolio-link" >
+                <div className="projects-info">
+                  <h3 className="projects-title">{project.title}</h3>
+                  <p className="projects-description">{project.description}</p>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link" >
                     View Project <FaArrowRight />
                   </a>
                 </div>
               </div>
             ))}
           </div>
-          <p className="portfolio-hint">← Drag or scroll to explore projects →</p>
         </div>
       </section>
 
@@ -236,10 +199,6 @@ const Landing = () => {
                 <div className="skill-item">
                   <SiTailwindcss className="skill-icon" />
                   <span>Tailwind CSS</span>
-                </div>
-                <div className="skill-item">
-                  <FaBootstrap className="skill-icon" />
-                  <span>Bootstrap</span>
                 </div>
               </div>
             </div>
@@ -316,9 +275,9 @@ const Landing = () => {
           <div className="contact-content">
             <div className="contact-left">
               <div className="contact-links">
-                <a href="mailto:francislingan.onlineclass.94@gmail.com" className="contact-link">
+                <a href="mailto:franciscarl.lingan@gmail.com" className="contact-link">
                   <FaEnvelope className="contact-icon" />
-                  <span>francislingan.onlineclass.94@gmail.com</span>
+                  <span>franciscarl.lingan@gmail.com</span>
                 </a>
                 <a href="https://github.com/iskodemain" target="_blank" rel="noopener noreferrer" className="contact-link">
                   <FaGithub className="contact-icon" />
@@ -328,21 +287,17 @@ const Landing = () => {
                   <FaLinkedin className="contact-icon" />
                   <span>LinkedIn Profile</span>
                 </a>
-                <a href="https://facebook.com/carl.lingan.2024" target="_blank" rel="noopener noreferrer" className="contact-link">
-                  <FaFacebook className="contact-icon" />
-                  <span>Facebook Profile</span>
-                </a>
               </div>
             </div>
             <div className="contact-right">
               <h3 className="contact-cta">Got a vision? Let's bring it to life!</h3>
               <a 
-                href={assets.resume} 
+                href={assets.resume_need_to_update} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="resume-btn-secondary"
               >
-                Check out my Resume
+                Check out my Resume <i>(Temporarily Unavailable)</i>
               </a>
             </div>
           </div>

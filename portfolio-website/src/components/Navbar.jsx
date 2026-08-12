@@ -14,7 +14,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ['home', 'about', 'portfolio', 'skills', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (let section of sections) {
@@ -65,8 +65,8 @@ const Navbar = () => {
           <li className={activeSection === 'about' ? 'active' : ''}>
             <a onClick={() => scrollToSection('about')}>About</a>
           </li>
-          <li className={activeSection === 'portfolio' ? 'active' : ''}>
-            <a onClick={() => scrollToSection('portfolio')}>Portfolio</a>
+          <li className={activeSection === 'projects' ? 'active' : ''}>
+            <a onClick={() => scrollToSection('projects')}>Projects</a>
           </li>
           <li className={activeSection === 'skills' ? 'active' : ''}>
             <a onClick={() => scrollToSection('skills')}>Skills & Tools</a>
