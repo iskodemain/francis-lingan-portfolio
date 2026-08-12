@@ -174,6 +174,7 @@ body {
   font-weight: 400;
   transition: all 0.3s ease;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .resume-btn:hover {
@@ -236,7 +237,7 @@ body {
 .about-content {
   max-width: 900px;
   margin: 0 auto;
-  text-align: center;
+  text-align:left;
 }
 
 .about-text {
@@ -247,68 +248,41 @@ body {
   font-weight: 300;
 }
 
-/* Portfolio Section */
-.portfolio-section {
+/* Projects Section */
+.projects-section {
   padding: 120px 0;
   background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
 }
 
-.portfolio-carousel {
-  display: flex;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
   padding: 20px 0 40px;
-  cursor: grab;
-  user-select: none;
 }
 
-.portfolio-carousel:active {
-  cursor: grabbing;
-}
-
-.portfolio-carousel::-webkit-scrollbar {
-  height: 8px;
-}
-
-.portfolio-carousel::-webkit-scrollbar-track {
-  background: #f0f0f0;
-  border-radius: 10px;
-}
-
-.portfolio-carousel::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.portfolio-carousel::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-
-.portfolio-card {
-  min-width: 480px;
+.projects-card {
+  width: 100%;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0;
 }
 
-.portfolio-card:hover {
+.projects-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
-.portfolio-image {
+.projects-image {
   height: 280px;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.portfolio-overlay {
+.projects-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -322,17 +296,17 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.portfolio-card:hover .portfolio-overlay {
+.projects-card:hover .projects-overlay {
   opacity: 1;
 }
 
-.portfolio-tags {
+.projects-tags {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.portfolio-tag {
+.projects-tag {
   padding: 6px 14px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
@@ -341,25 +315,25 @@ body {
   color: #333;
 }
 
-.portfolio-info {
+.projects-info {
   padding: 30px;
 }
 
-.portfolio-title {
+.projects-title {
   font-size: 24px;
   font-weight: 400;
   color: #1a1a1a;
   margin-bottom: 12px;
 }
 
-.portfolio-description {
+.projects-description {
   font-size: 15px;
   color: #666;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
-.portfolio-link {
+.projects-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -373,18 +347,10 @@ body {
   transition: all 0.3s ease;
 }
 
-.portfolio-link:hover {
+.projects-link:hover {
   background: #333;
   color: #fff;
   transform: translateX(5px);
-}
-
-.portfolio-hint {
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  margin-top: 30px;
-  font-style: italic;
 }
 
 /* Skills Section */
@@ -525,6 +491,7 @@ body {
   font-weight: 400;
   transition: all 0.3s ease;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .resume-btn-secondary:hover {
@@ -579,8 +546,8 @@ body {
     font-size: 42px;
   }
 
-  .portfolio-card {
-    min-width: 420px;
+  .projects-card {
+    gap: 24px;
   }
 
   .skills-grid {
@@ -631,7 +598,7 @@ body {
   }
 
   .about-section,
-  .portfolio-section,
+  .projects-section,
   .skills-section,
   .contact-section {
     padding: 80px 0;
@@ -641,11 +608,16 @@ body {
     font-size: 16px;
   }
 
-  .portfolio-card {
+  /* .projects-card {
     min-width: 350px;
+  } */
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .portfolio-image {
+  .projects-image {
     height: 220px;
   }
 
@@ -703,7 +675,7 @@ body {
   }
 
   .about-section,
-  .portfolio-section,
+  .projects-section,
   .skills-section,
   .contact-section {
     padding: 60px 0;
@@ -713,23 +685,27 @@ body {
     font-size: 15px;
   }
 
-  .portfolio-card {
+  /* .projects-card {
     min-width: 290px;
+  } */
+
+  .projects-grid {
+    gap: 20px;
   }
 
-  .portfolio-image {
+  .projects-image {
     height: 180px;
   }
 
-  .portfolio-info {
+  .projects-info {
     padding: 20px;
   }
 
-  .portfolio-title {
+  .projects-title {
     font-size: 20px;
   }
 
-  .portfolio-description {
+  .projects-description {
     font-size: 14px;
   }
 
@@ -802,7 +778,7 @@ body {
   }
 
   .about-section,
-  .portfolio-section,
+  .projects-section,
   .skills-section,
   .contact-section {
     padding: 50px 0;
@@ -812,23 +788,27 @@ body {
     font-size: 14px;
   }
 
-  .portfolio-card {
+  /* .projects-card {
     min-width: 250px;
+  } */
+
+  .projects-grid {
+    gap: 16px;
   }
 
-  .portfolio-image {
+  .projects-image {
     height: 160px;
   }
 
-  .portfolio-info {
+  .projects-info {
     padding: 18px;
   }
 
-  .portfolio-title {
+  .projects-title {
     font-size: 18px;
   }
 
-  .portfolio-description {
+  .projects-description {
     font-size: 13px;
   }
 
@@ -911,7 +891,7 @@ body {
   }
 
   .about-section,
-  .portfolio-section,
+  .projects-section,
   .skills-section,
   .contact-section {
     padding: 40px 0;
@@ -922,27 +902,31 @@ body {
     line-height: 1.6;
   }
 
-  .portfolio-card {
+  /* .projects-card {
     min-width: 200px;
+  } */
+
+  .projects-grid {
+    gap: 12px;
   }
 
-  .portfolio-image {
+  .projects-image {
     height: 140px;
   }
 
-  .portfolio-info {
+  .projects-info {
     padding: 15px;
   }
 
-  .portfolio-title {
+  .projects-title {
     font-size: 16px;
   }
 
-  .portfolio-description {
+  .projects-description {
     font-size: 12px;
   }
 
-  .portfolio-link {
+  .projects-link {
     padding: 8px 14px;
     font-size: 11px;
   }
