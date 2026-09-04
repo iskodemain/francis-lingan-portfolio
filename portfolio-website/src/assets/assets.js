@@ -2,6 +2,7 @@ import profile_1 from './profile_1.jpg';
 import logo from './logo.png';
 import project_1 from './project_1.png'
 import project_2 from './project_2.png'
+import project_3 from './project_3.png'
 import project_4 from './project_4.png'
 
 export const assets = {
@@ -9,5 +10,6 @@ export const assets = {
     logo,
     project_1,
     project_2,
+    project_3,
     project_4
 }
