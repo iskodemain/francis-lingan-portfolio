@@ -2,28 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Landing.css';
 import { assets } from '../assets/assets.js';
 import Navbar from '../components/Navbar.jsx';
-import { 
-  FaGithub, 
-  FaLinkedin, 
-  FaFacebook, 
-  FaEnvelope,
-  FaReact,
-  FaCss3Alt,
-  FaJs,
-  FaNodeJs,
-  FaFigma,
-  FaGitAlt,
-  FaArrowRight
-} from 'react-icons/fa';
-import { 
-  SiTailwindcss,
-  SiExpress,
-  SiMysql,
-  SiSequelize,
-  SiCanva,
-  SiVercel,
-  SiRender
-} from 'react-icons/si';
+import { FaGithub,  FaLinkedin,  FaEnvelope, FaReact, FaCss3Alt, FaJs, FaNodeJs, FaFigma, FaGitAlt, FaArrowRight } from 'react-icons/fa';
+import { SiTailwindcss, SiExpress, SiMysql, SiSequelize, SiCanva, SiVercel, SiRender } from 'react-icons/si';
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
@@ -113,14 +93,6 @@ const Landing = () => {
           <div className="home-text">
             <h1 className="home-title">Francis Lingan</h1>
             <p className="home-subtitle">Software Developer, UI/UX Designer, and QA Tester</p>
-            <a 
-              href={assets.resume_need_to_update} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="resume-btn"
-            >
-              Check out my Resume <i>(Temporarily Unavailable)</i>
-            </a>
           </div>
           <div className="home-image">
             <div className="profile-circle">
@@ -291,14 +263,6 @@ const Landing = () => {
             </div>
             <div className="contact-right">
               <h3 className="contact-cta">Got a vision? Let's bring it to life!</h3>
-              <a 
-                href={assets.resume_need_to_update} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="resume-btn-secondary"
-              >
-                Check out my Resume <i>(Temporarily Unavailable)</i>
-              </a>
             </div>
           </div>
         </div>
