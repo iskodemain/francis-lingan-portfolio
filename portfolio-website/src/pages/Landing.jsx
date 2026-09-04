@@ -92,7 +92,7 @@ const Landing = () => {
         <div className="home-content">
           <div className="home-text">
             <h1 className="home-title">Francis Lingan</h1>
-            <p className="home-subtitle">Software Developer, UI/UX Designer, and QA Tester</p>
+            <p className="home-subtitle">Web Developer, UI/UX Designer, and QA Tester</p>
           </div>
           <div className="home-image">
             <div className="profile-circle">
@@ -108,10 +108,10 @@ const Landing = () => {
           <h2 className="section-title">About Me</h2>
           <div className="about-content">
             <p className="about-text">
-              I'm Francis Carl A. Lingan, a Software Developer specializing in web development, UI/UX design, and QA testing, currently seeking work opportunities. I am a graduate of Bachelor of Science in Information Technology from Cavite State University - Carmona Campus.
+              I'm Francis Carl A. Lingan, a Full-Stack Web Developer specializing in web development, UI/UX design, and QA testing, currently seeking work opportunities. I am a graduate of Bachelor of Science in Information Technology from Cavite State University – Carmona Campus.
             </p>
             <p className="about-text">
-              I combine technical skills with creative design to build systems and responsive web applications.
+              I leverage AI-assisted development alongside modern full-stack technologies to design, develop, and maintain responsive web applications. My technical specialization includes React.js and CSS for frontend development, and Node.js, Express.js, MySQL, and Sequelize ORM for backend development, with a focus on building and maintainable software systems.
             </p>
           </div>
         </div>
