@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Landing.css';
 import { assets } from '../assets/assets.js';
 import Navbar from '../components/Navbar.jsx';
-import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaCss3Alt, FaNodeJs, FaGitAlt, FaArrowRight, FaDocker } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaCss3Alt, FaNodeJs, FaGitAlt, FaArrowRight, FaDocker, FaFigma, FaWordpress, FaCloud } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiMysql, SiSequelize, SiCanva, SiVercel, SiRender, SiPostgresql, SiPrisma, SiRedis, SiTypescript } from 'react-icons/si';
 
 const Landing = () => {
@@ -326,6 +326,41 @@ const Landing = () => {
                   <div className="skill-item-left">
                     <SiRender className="skill-icon" />
                     <span>Render</span>
+                  </div>
+                  <span className="skill-badge skill-badge--familiar">Proficient</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-item-left">
+                    <FaCloud className="skill-icon" />
+                    <span>Aiven</span>
+                  </div>
+                  <span className="skill-badge skill-badge--familiar">Proficient</span>
+                </div>
+              </div>
+            </div>
+
+            {/* UI/UX & CMS */}
+            <div className="skill-category">
+              <h3 className="skill-category-title">UI/UX & CMS</h3>
+              <div className="skill-items">
+                <div className="skill-item">
+                  <div className="skill-item-left">
+                    <FaFigma className="skill-icon" />
+                    <span>Figma</span>
+                  </div>
+                  <span className="skill-badge skill-badge--familiar">Proficient</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-item-left">
+                    <SiCanva className="skill-icon" />
+                    <span>Canva</span>
+                  </div>
+                  <span className="skill-badge skill-badge--familiar">Proficient</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-item-left">
+                    <FaWordpress className="skill-icon" />
+                    <span>WordPress</span>
                   </div>
                   <span className="skill-badge skill-badge--familiar">Proficient</span>
                 </div>
