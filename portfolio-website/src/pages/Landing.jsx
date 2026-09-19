@@ -42,7 +42,7 @@ const Landing = () => {
       tags: ["React", "TypeScript", "Tailwind CSS", "Express.js", "PostgreSQL", "Prisma", "Redis"],
       description: "Web-based travel platform for discovering, booking, and managing travel accommodations and experiences.",
       image: assets.project_3,
-      link: "#",
+      link: "https://taravel-silk.vercel.app/",
       inProgress: true
     },
     {
@@ -150,9 +150,9 @@ const Landing = () => {
                   <h3 className="projects-title">{project.title}</h3>
                   <p className="projects-description">{project.description}</p>
                   {project.inProgress ? (
-                    <button className="projects-link projects-link--disabled" disabled>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link projects-link--in-progress">
                       In Progress <FaArrowRight />
-                    </button>
+                    </a>
                   ) : (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link">
                       View Project <FaArrowRight />
