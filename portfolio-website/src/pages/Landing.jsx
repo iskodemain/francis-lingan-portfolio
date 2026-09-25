@@ -1,20 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './Landing.css';
 import { assets } from '../assets/assets.js';
 import Navbar from '../components/Navbar.jsx';
 import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaCss3Alt, FaNodeJs, FaGitAlt, FaArrowRight, FaDocker, FaFigma, FaWordpress, FaCloud } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiMysql, SiSequelize, SiCanva, SiVercel, SiRender, SiPostgresql, SiPrisma, SiRedis, SiTypescript } from 'react-icons/si';
+import { trackPageView, trackEvent } from '../analytics.js';
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Loading animation
-    setTimeout(() => {
-      setLoading(false);
-    }, 2500);
+    if (loading) {
+      // Start the loading timer only when loading is true
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
 
-    if (loading) return;
+    // Once loading is done, track page view
+    trackPageView('/', 'Francis Lingan - Portfolio');
 
     // Intersection Observer for scroll animations
     const observerOptions = {
@@ -150,11 +155,13 @@ const Landing = () => {
                   <h3 className="projects-title">{project.title}</h3>
                   <p className="projects-description">{project.description}</p>
                   {project.inProgress ? (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link projects-link--in-progress">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link projects-link--in-progress"
+                      onClick={() => trackEvent('Projects', 'Click In Progress', project.title)}>
                       In Progress <FaArrowRight />
                     </a>
                   ) : (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link"
+                      onClick={() => trackEvent('Projects', 'Click View Project', project.title)}>
                       View Project <FaArrowRight />
                     </a>
                   )}
@@ -378,15 +385,18 @@ const Landing = () => {
           <div className="contact-content">
             <div className="contact-left">
               <div className="contact-links">
-                <a href="mailto:franciscarl.lingan@gmail.com" className="contact-link">
+                <a href="mailto:franciscarl.lingan@gmail.com" className="contact-link"
+                  onClick={() => trackEvent('Contact', 'Click Email', 'franciscarl.lingan@gmail.com')}>
                   <FaEnvelope className="contact-icon" />
                   <span>franciscarl.lingan@gmail.com</span>
                 </a>
-                <a href="https://github.com/iskodemain" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <a href="https://github.com/iskodemain" target="_blank" rel="noopener noreferrer" className="contact-link"
+                  onClick={() => trackEvent('Contact', 'Click GitHub', 'GitHub Profile')}>
                   <FaGithub className="contact-icon" />
                   <span>GitHub Profile</span>
                 </a>
-                <a href="https://linkedin.com/in/francis-lingan" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <a href="https://linkedin.com/in/francis-lingan" target="_blank" rel="noopener noreferrer" className="contact-link"
+                  onClick={() => trackEvent('Contact', 'Click LinkedIn', 'LinkedIn Profile')}>
                   <FaLinkedin className="contact-icon" />
                   <span>LinkedIn Profile</span>
                 </a>
