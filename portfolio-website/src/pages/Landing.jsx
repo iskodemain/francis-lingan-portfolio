@@ -2,17 +2,108 @@ import { useState, useEffect } from 'react';
 import './Landing.css';
 import { assets } from '../assets/assets.js';
 import Navbar from '../components/Navbar.jsx';
+import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaCss3Alt, FaNodeJs, FaGitAlt, FaArrowRight, FaDocker, FaFigma, FaWordpress, FaCloud } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiMysql, SiSequelize, SiCanva, SiVercel, SiRender, SiPostgresql, SiPrisma, SiRedis, SiTypescript } from 'react-icons/si';
 import { trackPageView, trackEvent } from '../analytics.js';
 
+// Module-level flag — persists across React navigation but resets on full page refresh
+let hasLoadedOnce = false;
+
+/* ── Carousel card for design projects ── */
+const DesignCard = ({ project }) => {
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const total = project.slides.length;
+
+  // Pick icon based on tool used
+  const ToolIcon = project.tool === 'canva' ? SiCanva : FaFigma;
+
+  // Auto-advance when hovered
+  useEffect(() => {
+    if (!isHovered) return;
+    const id = setInterval(() => {
+      setCurrent((c) => (c + 1) % total);
+    }, 1200);
+    return () => clearInterval(id);
+  }, [isHovered, total]);
+
+  // Touch swipe
+  const onTouchStart = (e) => setTouchStartX(e.touches[0].clientX);
+  const onTouchEnd = (e) => {
+    if (touchStartX === null) return;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (diff > 40) setCurrent((c) => (c + 1) % total);
+    else if (diff < -40) setCurrent((c) => (c - 1 + total) % total);
+    setTouchStartX(null);
+  };
+
+  return (
+    <div className="design-card">
+      {/* Full-card slider */}
+      <div
+        className="design-card-slider"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Slides */}
+        {project.slides.map((slide, i) => (
+          <div
+            key={i}
+            className={`design-card-slide${i === current ? ' design-card-slide--active' : ''}`}
+            style={{ backgroundImage: `url(${slide})` }}
+          />
+        ))}
+
+        {/* Category badge with tool icon */}
+        <div className="design-card-overlay">
+          <span className="design-card-category">
+            <ToolIcon /> {project.category}
+          </span>
+        </div>
+
+        {/* Dots */}
+        <div className="design-carousel-dots">
+          {project.slides.map((_, i) => (
+            <button
+              key={i}
+              className={`design-carousel-dot${i === current ? ' design-carousel-dot--active' : ''}`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Card info below slider */}
+      <div className="design-card-info">
+        <h3 className="design-card-title">{project.title}</h3>
+        <p className="design-card-description">{project.description}</p>
+        <Link
+          to={`/design/${project.id}`}
+          state={{ from: 'design' }}
+          className="design-card-link"
+          onClick={() => trackEvent('Design Projects', 'Click View Project', project.title)}
+        >
+          View Project <FaArrowRight />
+        </Link>
+      </div>
+    </div>
+  );
+};
+
 const Landing = () => {
-  const [loading, setLoading] = useState(true);
+  // Skip loading if we've already shown it this session
+  const [loading, setLoading] = useState(!hasLoadedOnce);
 
   useEffect(() => {
     if (loading) {
       // Start the loading timer only when loading is true
       const timer = setTimeout(() => {
+        hasLoadedOnce = true;
         setLoading(false);
       }, 2500);
       return () => clearTimeout(timer);
@@ -21,10 +112,25 @@ const Landing = () => {
     // Once loading is done, track page view
     trackPageView('/', 'Francis Lingan - Portfolio');
 
+    // If URL has a hash (returning from a project page), instantly show all
+    // sections as already-animated, then scroll to the target section
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      // Immediately reveal all sections — user has already seen them
+      document.querySelectorAll('.section-animate').forEach(el => {
+        el.classList.add('animate-in');
+      });
+      // Then scroll to the target section
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
+      }, 50);
+    }
+
     // Intersection Observer for scroll animations
     const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -43,41 +149,121 @@ const Landing = () => {
 
   const portfolioProjects = [
     {
+      id: 'taravel',
+      category: 'Travel Booking Platform · Full-Stack',
       title: "Taravel",
       tags: ["React", "TypeScript", "Tailwind CSS", "Express.js", "PostgreSQL", "Prisma", "Redis"],
       description: "Web-based travel platform for discovering, booking, and managing travel accommodations and experiences.",
-      image: assets.project_3,
-      link: "https://taravel-silk.vercel.app/",
+      image: assets.taravel_cover,
       inProgress: true
     },
     {
+      id: 'gamj-ordering-system',
+      category: 'Ordering & Inventory System · Full-Stack',
       title: "Ordering With Inventory Monitoring System",
       tags: ["React", "CSS", "Express.js", "MySQL", "Sequelize"],
       description: "Web-based application for ordering and inventory monitoring for GAMJ General Merchandise",
-      image: assets.project_1,
-      link: "https://www.gamjgeneralmerchandise.store/"
+      image: assets.gamj_cover,
     },
     {
+      id: 'angle-ordering-system',
+      category: 'Ordering System · Full-Stack',
       title: "Ordering System for Clothes Store",
       tags: ["React", "CSS", "Express.js", "MySQL", "Sequelize"],
       description: "Web-based ordering system for a clothing store for Angle, featuring product management and order processing.",
-      image: assets.project_2,
-      link: "https://angle-online-store-customer.vercel.app/"
+      image: assets.angle_cover,
     },
     {
+      id: 'library-management-system',
+      category: 'Library Management System · Full-Stack',
       title: "Library Management System",
       tags: ["React", "CSS", "Tailwind CSS", "Express.js", "MySQL", "Sequelize"],
       description: "Web-based library management system for managing books, borrowers, return and returns.",
-      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=500&fit=crop",
-      link: "https://github.com/Valiantic/Library-Management-System-"
+      image: assets.aurevia_cover,
     },
     {
+      id: 'charina-portfolio',
+      category: 'Portfolio Website · Frontend',
       title: "Charina Lingan Portfolio Website",
       tags: ["React", "CSS"],
       description: "Personal portfolio website showcasing projects, skills, and contact information.",
-      image: assets.project_4,
-      link: "https://charina-lingan-portfolio.vercel.app"
+      image: assets.charina_cover,
     }
+  ];
+
+  const designProjects = [
+    {
+      id: 'taravel-ui-design',
+      title: 'Taravel UI Design',
+      category: 'Travel Booking Web App',
+      tool: 'figma',
+      description: 'A UI/UX design for a web-based travel platform for discovering, booking, and managing travel accommodations and experiences.',
+      slides: [
+        assets.taravel_cover,
+        assets.taravel_1,
+        assets.taravel_2
+      ],
+    },
+    {
+      id: 'gamj-ui-design',
+      title: 'GAMJ General Merchandise UI Design',
+      category: 'Ordering & Inventory System Web App',
+      tool: 'figma',
+      description: 'A UI/UX design for an ordering and inventory monitoring web application for GAMJ General Merchandise.',
+      slides: [
+        assets.gamj_cover,
+        assets.gamj_1,
+        assets.gamj_2
+      ],
+    },
+    {
+      id: 'angle-store-ui-design',
+      title: 'Angle Clothing Store UI Design',
+      category: 'Ordering System Web App',
+      tool: 'figma',
+      description: 'A UI/UX design for an online clothing store, emphasizing product discovery and a streamlined checkout flow.',
+      slides: [
+        assets.angle_cover,
+        assets.angle_1,
+        assets.angle_2
+      ],
+    },
+    {
+      id: 'alkansya-ui-design',
+      title: 'Alkansya UI Design',
+      category: 'Online Banking Mobile App',
+      tool: 'figma',
+      description: 'A UI/UX design for a mobile e-money app with a built-in financial tracker to send and receive money while managing income, expenses, liabilities, assets, cash flow, savings, and balance all in one place.',
+      slides: [
+        assets.alkansya_cover,
+        assets.alkansya_1,
+        assets.alkansya_2,
+      ],
+    },
+    {
+      id: 'tracita-ui-design',
+      title: 'Tracita UI Design',
+      category: 'Tracking System with AR Navigation Mobile App',
+      tool: 'figma',
+      description: 'A UI/UX design for a mobile tracking system with AR navigation for real-time public safety and disaster preparedness in Barangay Pacita 2, San Pedro Laguna.',
+      slides: [
+        assets.tracita_cover,
+        assets.tracita_1,
+        assets.tracita_2,
+      ],
+    },
+    {
+      id: 'sightaid-ui-design',
+      title: 'SightAid UI Design',
+      category: 'Visual Impairment Assistance Mobile App',
+      tool: 'figma',
+      description: 'A UI/UX design for a mobile app that helps visually impaired users read handwritten text using the camera and listen to it via text-to-speech in both Filipino and English.',
+      slides: [
+        assets.sightaid_cover,
+        assets.sightaid_1,
+        assets.sightaid_2,
+      ],
+    },
   ];
 
   if (loading) {
@@ -133,11 +319,15 @@ const Landing = () => {
       {/* Projects Section */}
       <section id="projects" className="projects-section section-animate">
         <div className="container">
-          <h2 className="section-title">Projects</h2>
+          <h2 className="section-title">Web Development Projects</h2>
           <div className="projects-grid">
             {portfolioProjects.map((project, index) => (
               <div key={index} className={`projects-card${project.inProgress ? ' projects-card--in-progress' : ''}`}>
                 <div className="projects-image" style={{backgroundImage: `url(${project.image})`}}>
+                  {/* Category badge — top left */}
+                  <div className="projects-card-badge">
+                    <span className="projects-card-category">{project.category}</span>
+                  </div>
                   <div className="projects-overlay">
                     <div className="projects-tags">
                       {project.tags.map((tag, i) => (
@@ -154,19 +344,29 @@ const Landing = () => {
                 <div className="projects-info">
                   <h3 className="projects-title">{project.title}</h3>
                   <p className="projects-description">{project.description}</p>
-                  {project.inProgress ? (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link projects-link--in-progress"
-                      onClick={() => trackEvent('Projects', 'Click In Progress', project.title)}>
-                      In Progress <FaArrowRight />
-                    </a>
-                  ) : (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="projects-link"
-                      onClick={() => trackEvent('Projects', 'Click View Project', project.title)}>
-                      View Project <FaArrowRight />
-                    </a>
-                  )}
+                  <Link
+                    to={`/project/${project.id}`}
+                    state={{ from: 'projects' }}
+                    className="projects-link"
+                    onClick={() => trackEvent('Projects', 'Click View Project', project.title)}>
+                    View Project <FaArrowRight />
+                  </Link>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Design Projects Section */}
+      <section id="design" className="design-section section-animate">
+        <div className="container">
+          <div className="design-section-header">
+            <h2 className="section-title">UI/UX Design Projects</h2>
+          </div>
+          <div className="design-grid">
+            {designProjects.map((project) => (
+              <DesignCard key={project.id} project={project} />
             ))}
           </div>
         </div>
