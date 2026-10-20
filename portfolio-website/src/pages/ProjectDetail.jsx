@@ -12,8 +12,25 @@ const webProjects = [
     title: 'Taravel',
     category: 'Travel Booking Platform · Full-Stack',
     type: 'web',
-    description:
-      'A web-based travel platform for discovering, booking, and managing travel accommodations and experiences. Built with React, TypeScript, Express.js, PostgreSQL, Prisma, and Redis.',
+    description: 'A web-based travel platform for discovering, booking, and managing travel accommodations and experiences.',
+    richDescription: [
+      {
+        heading: 'Project Overview',
+        paragraphs: ['Taravel is a web-based travel platform designed to help users discover, book, and manage travel accommodations and experiences. This personal project is currently in development and serves as an opportunity to strengthen full-stack web development skills while applying modern technologies and industry practices.'],
+      },
+      {
+        heading: 'My Role and Responsibilities',
+        paragraphs: ['I independently develop the application across the frontend and backend, including user interface development, state management, API development, database integration, and deployment.'],
+      },
+      {
+        heading: 'Technology Stack',
+        items: ['Frontend: React.js, TypeScript, Tailwind CSS', 'State Management and Data Fetching: Zustand, TanStack Query', 'Backend: Node.js, Express.js', 'Database: PostgreSQL', 'ORM: Prisma', 'Caching and Data Management: Redis', 'Real-Time Communication: Socket.IO', 'Deployment and Infrastructure: Vercel, Render, Aiven'],
+      },
+      {
+        heading: 'Project Goals',
+        paragraphs: ['The primary goal of Taravel is to enhance technical capabilities in full-stack web development by building a complete web application using modern technologies. Through this project, the aim is to gain practical experience in frontend and backend integration, database management, server-side development, state management, and deployment.', 'Beyond improving technical skills, Taravel provides an opportunity to explore how scalable and maintainable web applications can be designed and developed to support real-world travel and booking needs.'],
+      },
+    ],
     coverImage: assets.taravel_cover,
     liveLink: 'https://taravel-silk.vercel.app/',
     githubLink: null, // private repo
@@ -31,8 +48,25 @@ const webProjects = [
     title: 'Ordering With Inventory Monitoring System',
     category: 'Ordering & Inventory System · Full-Stack',
     type: 'web',
-    description:
-      'A web-based application for ordering and inventory monitoring built for GAMJ General Merchandise. Features real-time inventory tracking, order management, and reporting.',
+    description: 'A web-based application for ordering and inventory monitoring built for GAMJ General Merchandise.',
+    richDescription: [
+      {
+        heading: 'Project Overview',
+        paragraphs: ['GAMJ General Merchandise is a web-based ordering and inventory monitoring system developed as part of our academic capstone project and Research 1 and Research 2 requirements. The system is designed to streamline order processing, automate inventory monitoring, and improve the efficiency of the business\'s daily operations.', 'The business previously relied on manual communication channels, including email, text messages, and phone calls, to handle customer orders and confirmations. These processes could lead to delays, miscommunication, and additional workloads for both customers and staff. The system aims to address these challenges by providing a centralized platform for managing orders and inventory.'],
+      },
+      {
+        heading: 'My Role and Responsibilities',
+        paragraphs: ['I contributed to the analysis, design, and development of the system as a member of the capstone development team. My responsibilities included frontend and backend development, database integration, implementation of system features, and resolving technical issues encountered during development.'],
+      },
+      {
+        heading: 'Technology Stack',
+        items: ['Frontend: React.js, CSS', 'State Management: Context API', 'Backend: Node.js, Express.js', 'Database: MySQL', 'ORM: Sequelize', 'Real-Time Communication: Socket.IO', 'Deployment and Infrastructure: Vercel, Render, Aiven'],
+      },
+      {
+        heading: 'Project Goals',
+        paragraphs: ['The primary goal of the system is to improve GAMJ General Merchandise\'s business operations by reducing its reliance on manual ordering and inventory management processes. The system aims to provide a more efficient way to place orders, monitor product availability, track inventory movements, and manage order statuses.', 'Additionally, the project aims to reduce repetitive order inquiries and message overload, improve communication between customers and staff, and provide more organized records for business operations. Through this project, I also gained practical experience in developing a full-stack business application, integrating database operations, and implementing features based on actual business requirements.'],
+      },
+    ],
     coverImage: assets.gamj_cover,
     liveLink: 'https://www.gamjgeneralmerchandise.store/',
     githubLink: 'https://github.com/iskodemain/gamj-general-merchandise',
@@ -49,8 +83,25 @@ const webProjects = [
     title: 'Ordering System for Clothes Store',
     category: 'Ordering System · Full-Stack',
     type: 'web',
-    description:
-      'A web-based ordering system for Angle clothing store, featuring product management, order processing, and customer management.',
+    description: 'A web-based ordering system for Angle clothing store, featuring product management, order processing, and customer management.',
+    richDescription: [
+      {
+        heading: 'Project Overview',
+        paragraphs: ['Angle is a web-based ordering system developed for a retail clothing shop as part of our academic requirement for the Systems Analysis and Design subject. The system focuses on product management and order processing to help organize the shop\'s business operations and provide customers with a more convenient way to browse products and place orders.', 'The project addresses the challenges associated with manual business processes by proposing a centralized platform for managing product information and customer orders. It also provides the shop with an alternative to relying exclusively on third-party e-commerce platforms.'],
+      },
+      {
+        heading: 'My Role and Responsibilities',
+        paragraphs: ['I contributed to the analysis, planning, and development of the web-based ordering system as part of our academic project. My responsibilities involved translating the identified business requirements into system functionality and contributing to the implementation of features that support product management and order processing.'],
+      },
+      {
+        heading: 'Technology Stack',
+        items: ['Frontend: React.js, CSS', 'State Management: Context API', 'Backend: Node.js, Express.js', 'Database: MySQL', 'ORM: Sequelize', 'Deployment and Infrastructure: Vercel, Render, Aiven'],
+      },
+      {
+        heading: 'Project Goals',
+        paragraphs: ['The primary goal of Angle is to help the retail clothing shop improve its business processes through a dedicated web-based ordering system. The system aims to reduce repetitive manual tasks, organize product information, streamline order processing, and improve communication between the seller and customers.', 'Additionally, the project explores how an independent ordering platform can provide the business with greater control over its online sales channel while potentially reducing its dependence on third-party e-commerce marketplaces. Developing this system also provided an opportunity to apply systems analysis and design principles by identifying business problems and translating them into practical software requirements.'],
+      },
+    ],
     coverImage: assets.angle_cover,
     liveLink: 'https://angle-online-store-customer.vercel.app/',
     githubLink: 'https://github.com/iskodemain/Angle-Online-Store',
@@ -67,8 +118,25 @@ const webProjects = [
     title: 'Library Management System',
     category: 'Library Management System · Full-Stack',
     type: 'web',
-    description:
-      'A web-based library management system for managing books, borrowers, and returns. Includes book catalog, borrower records, and overdue tracking.',
+    description: 'A web-based library management system for managing books, borrowers, and returns.',
+    richDescription: [
+      {
+        heading: 'Project Overview',
+        paragraphs: ['Aurevia is a web-based library management system developed as an academic project for the Systems Integration and Architecture 2 subject. The system is designed to help students and administrators manage library resources, maintain book and borrower records, and organize book borrowing and return transactions through a centralized platform.', 'The project was developed collaboratively by a team of three developers, with development responsibilities divided according to different features and functionalities.'],
+      },
+      {
+        heading: 'My Role and Responsibilities',
+        paragraphs: ['I worked collaboratively with two other developers to develop the library management system. Our team divided the implementation tasks across different features and functionalities, allowing each member to contribute to the overall application. My responsibilities included developing my assigned features, integrating them with the system, and collaborating with the team to support the application\'s functionality.'],
+      },
+      {
+        heading: 'Technology Stack',
+        items: ['Frontend: React.js, Tailwind CSS, CSS', 'State Management: Context API', 'Backend: Node.js, Express.js', 'Database: MySQL', 'ORM: Sequelize'],
+      },
+      {
+        heading: 'Project Goals',
+        paragraphs: ['The primary goal of Aurevia is to provide a centralized system for managing library resources and simplifying common library operations. The system aims to organize book records, manage borrower information, and streamline borrowing and return transactions for students and administrators.', 'Additionally, the project provides practical experience in collaborative software development, integrating application components, and coordinating different features within a unified system. Through this project, I was able to apply concepts related to systems integration and architecture in the development of a functional web application.'],
+      },
+    ],
     coverImage: assets.aurevia_cover,
     liveLink: null, // no live deployment
     githubLink: 'https://github.com/Valiantic/Library-Management-System-',
@@ -85,8 +153,25 @@ const webProjects = [
     title: 'Charina Lingan Portfolio Website',
     category: 'Portfolio Website · Frontend',
     type: 'web',
-    description:
-      'A personal portfolio website for Charina Lingan, showcasing projects, skills, and contact information. Built with React and CSS.',
+    description: 'A web-based personal portfolio website showcasing professional experience, skills, projects, and contact information.',
+    richDescription: [
+      {
+        heading: 'Project Overview',
+        paragraphs: ['Charina Lingan is a web-based personal portfolio website developed to showcase an individual\'s professional experience, skills, projects, and contact information. The website serves as a centralized platform for presenting professional qualifications and helping prospective employers learn more about the individual\'s capabilities and previous work.', 'The project focuses on creating an organized and professional online presence that can support job applications and make relevant professional information accessible to potential employers.'],
+      },
+      {
+        heading: 'My Role and Responsibilities',
+        paragraphs: ['I developed the portfolio website to present the individual\'s professional background, skills, and projects in a clear and organized manner. My responsibilities included implementing the website\'s layout, organizing its content, and developing the sections needed to showcase professional experience and provide contact information.'],
+      },
+      {
+        heading: 'Technology Stack',
+        items: ['Frontend: React.js, CSS', 'Deployment and Infrastructure: Vercel'],
+      },
+      {
+        heading: 'Project Goals',
+        paragraphs: ['The primary goal of the portfolio website is to help the individual establish a professional online presence and showcase their qualifications to prospective employers. The website aims to present projects, skills, and professional experience in an accessible format that complements a résumé and job application.', 'Additionally, the project demonstrates how a well-organized personal website can serve as a platform for presenting professional capabilities, highlighting relevant work, and facilitating professional inquiries.'],
+      },
+    ],
     coverImage: assets.charina_cover,
     liveLink: 'https://charina-lingan-portfolio.vercel.app',
     githubLink: 'https://github.com/iskodemain/charina-lingan-portfolio',
@@ -315,7 +400,34 @@ const ProjectDetail = () => {
         )}
 
         {/* Description */}
-        <p className="project-detail-description">{project.description}</p>
+        {project.richDescription ? (
+          <div className="project-detail-rich">
+            {project.richDescription.map((section, i) => (
+              <div key={i} className="project-detail-rich-section">
+                <h3>{section.heading}</h3>
+                {section.paragraphs && section.paragraphs.map((p, j) => (
+                  <p key={j}>{p}</p>
+                ))}
+                {section.items && (
+                  <ul>
+                    {section.items.map((item, j) => {
+                      const colonIndex = item.indexOf(':');
+                      const label = colonIndex !== -1 ? item.slice(0, colonIndex) : null;
+                      const value = colonIndex !== -1 ? item.slice(colonIndex + 1) : item;
+                      return (
+                        <li key={j}>
+                          {label ? <><strong>{label}:</strong>{value}</> : item}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="project-detail-description">{project.description}</p>
+        )}
 
         {/* Video Demo — both web and design projects */}
         <h2 className="project-detail-section-title">Video Demo</h2>
